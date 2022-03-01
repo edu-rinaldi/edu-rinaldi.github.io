@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="it-it">
+<head>
+  <link rel="preload" href="/eduardo-rinaldi/lib/font-awesome/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/eduardo-rinaldi/lib/font-awesome/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/eduardo-rinaldi/lib/font-awesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/eduardo-rinaldi/lib/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <script type="text/javascript" src="https://latest.cactus.chat/cactus.js"></script>
+  <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> How to predict MBTI analyzing twitter profiles | Eduardo Rinaldi</title>
+  <link rel = 'canonical' href = 'https://edu-rinaldi.github.io/eduardo-rinaldi/posts/mbti/'>
+  <meta name="description" content="Since the Fall of 2017, I have been a student in **Computer Science** at *Sapienza University of Rome*; in 2020, I graduated with my Bachelor&#39;s degree, and I&#39;m currently studying for my Master&#39;s degree in Computer Science. Before that, while I was achieving my secondary school diploma in IT, I was a freelance web developer. I have a strong passion for **video games** and **graphics**, which is why I would like to work in this field. I often enjoy creating small projects in my spare time, which are publicly visible on my Github.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="How to predict MBTI analyzing twitter profiles" />
+<meta property="og:description" content="The MBTI (Myers-Briggs Personality Type Indicator) divides everyone into 16 distinct personality types across 4 axis:
+ Introversion (I) – Extroversion (E) Intuition (N) – Sensing (S) Thinking (T) – Feeling (F) Judging (J) – Perceiving (P)  This system is used in: businesses, online, for fun, for research and lots more.
+Usually, for knowing which of the 16 personalities is closer to our one we have to answer to a questionnaire; why not automate this task?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edu-rinaldi.github.io/eduardo-rinaldi/posts/mbti/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-01T15:11:22+01:00" />
+<meta property="article:modified_time" content="2022-03-01T15:11:22+01:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to predict MBTI analyzing twitter profiles"/>
+<meta name="twitter:description" content="The MBTI (Myers-Briggs Personality Type Indicator) divides everyone into 16 distinct personality types across 4 axis:
+ Introversion (I) – Extroversion (E) Intuition (N) – Sensing (S) Thinking (T) – Feeling (F) Judging (J) – Perceiving (P)  This system is used in: businesses, online, for fun, for research and lots more.
+Usually, for knowing which of the 16 personalities is closer to our one we have to answer to a questionnaire; why not automate this task?"/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://edu-rinaldi.github.io/eduardo-rinaldi/css/styles.c05d68261bf086a9d7713c4f8a6215a3601608e267a816a7ee58f139b3d1aae51222aae2081c8e0c6bd35e1334773b7a16283022f31f92afd93bb37e5e822e66.css" integrity="sha512-wF1oJhvwhqnXcTxPimIVo2AWCOJnqBan7ljxObPRquUSIqriCByODGvTXhM0dzt6FigwIvMfkq/ZO7N&#43;XoIuZg=="> 
+
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://edu-rinaldi.github.io/eduardo-rinaldi/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;" aria-label="Top of Page"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/eduardo-rinaldi/">home</a></li>
+         
+        <li><a href="/eduardo-rinaldi/posts/">posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#" aria-label="Share">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f" aria-label="Facebook">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&text=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="Twitter">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&title=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="Linkedin">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&is_video=false&description=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="Pinterest">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles&body=Check out this article: https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f" aria-label="Email">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&title=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="Pocket">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&title=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="reddit">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&name=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles&description=The%20MBTI%20%28Myers-Briggs%20Personality%20Type%20Indicator%29%20divides%20everyone%20into%2016%20distinct%20personality%20types%20across%204%20axis%3a%0a%20Introversion%20%28I%29%20%e2%80%93%20Extroversion%20%28E%29%20Intuition%20%28N%29%20%e2%80%93%20Sensing%20%28S%29%20Thinking%20%28T%29%20%e2%80%93%20Feeling%20%28F%29%20Judging%20%28J%29%20%e2%80%93%20Perceiving%20%28P%29%20%20This%20system%20is%20used%20in%3a%20businesses%2c%20online%2c%20for%20fun%2c%20for%20research%20and%20lots%20more.%0aUsually%2c%20for%20knowing%20which%20of%20the%2016%20personalities%20is%20closer%20to%20our%20one%20we%20have%20to%20answer%20to%20a%20questionnaire%3b%20why%20not%20automate%20this%20task%3f" aria-label="Tumblr">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&t=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="Hacker News">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#learning-task">Learning task</a></li>
+    <li><a href="#google-colab-or-databricks">Google Colab or Databricks?</a></li>
+    <li><a href="#datasets">Datasets</a></li>
+    <li><a href="#mbti-dataset">MBTI Dataset</a></li>
+    <li><a href="#reddit-dataset">Reddit dataset</a>
+      <ul>
+        <li><a href="#how-data-has-been-collected">How data has been collected?</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-models">Final models</a></li>
+  </ul>
+</nav>
+    </div>
+    
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        How to predict MBTI analyzing twitter profiles
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2022-03-01 15:11:22 &#43;0100 CET" itemprop="datePublished">01-03-2022</time>
+          
+        </div>
+        
+        
+        <div class="article-read-time">
+          <i class="far fa-clock"></i>
+          
+          3 minute read
+        </div>
+        
+        
+        
+      </div>
+    </header>
+
+  
+    
+    <div class="content" itemprop="articleBody">
+      <p>The MBTI (Myers-Briggs Personality Type Indicator) divides everyone into <strong>16 distinct personality</strong> types across <strong>4 axis</strong>:</p>
+<ul>
+<li>Introversion (<strong>I</strong>) – Extroversion (<strong>E</strong>)</li>
+<li>Intuition (<strong>N</strong>) – Sensing (<strong>S</strong>)</li>
+<li>Thinking (<strong>T</strong>) – Feeling (<strong>F</strong>)</li>
+<li>Judging (<strong>J</strong>) – Perceiving (<strong>P</strong>)</li>
+</ul>
+<p>This system is used in: <em>businesses, online, for fun, for research and lots more</em>.</p>
+<p>Usually, for knowing which of the 16 personalities is closer to our one we have to answer to a questionnaire; why not automate this task?</p>
+<h2 id="learning-task">Learning task</h2>
+<p>Design and implement a model that given a collection of &ldquo;posts&rdquo; as input returns the most suited <strong>Myers-Briggs personality type indicator (MBTI)</strong> associated to the author.</p>
+<p>In the following lines I&rsquo;m referring to my project freely available <a href="https://github.com/edu-rinaldi/MBTI-Predictor">here</a>.</p>
+<p>Machine learning algorithms used for this project:</p>
+<ul>
+<li>Naive Bayes</li>
+<li>Linear SVC</li>
+<li>Logistic Regression</li>
+<li>Neural Network</li>
+</ul>
+<h2 id="google-colab-or-databricks">Google Colab or Databricks?</h2>
+<p><code>MBTI.ipynb</code> notebook is designed to run on <strong>Google Colab</strong>, <strong>BUT</strong> setting <code>USING_COLAB=False</code> it should also run on <strong>Databricks</strong> (not full tested, so <strong>Colab is reccomended</strong>)</p>
+<h2 id="datasets">Datasets</h2>
+<p>Two datasets has been used:</p>
+<ol>
+<li>MBTI Dataset (<a href="https://www.kaggle.com/datasnaek/mbti-type">Kaggle link</a>)</li>
+<li>Reddit dataset (<a href="https://github.com/edu-rinaldi/MBTI-Predictor/blob/main/datasets/reddit_mbti.tar.gz">Github link</a>)</li>
+</ol>
+<h2 id="mbti-dataset">MBTI Dataset</h2>
+<p>This <strong>dataset</strong> contains over <strong>8600 rows of data</strong>, and on each row contains:</p>
+<ul>
+<li><strong>&ldquo;posts&rdquo;</strong>: last 50 things a user have posted, each entry is separated by <code>&quot;|||&quot;</code></li>
+<li><strong>&ldquo;type&rdquo;</strong>: MBTI type</li>
+</ul>
+<p>Notice that after splitting each post we will have about <strong>430k rows</strong>.</p>
+<p><strong>Acknowledgements:</strong>
+This data was collected through the PersonalityCafe forum; it provides a large selection of people and their MBTI personality type.</p>
+<p>Credits to @datasnaek</p>
+<h2 id="reddit-dataset">Reddit dataset</h2>
+<p>For obtaining a model with much more &ldquo;generalization power&rdquo; and for increasing the number of data to use during training phase I decided to collect new data and I came up with this new dataset.</p>
+<p>It&rsquo;s a <strong>PARQUET</strong> dataset containing on each row:</p>
+<ul>
+<li><strong>redditor_id</strong>: posts&rsquo; author id</li>
+<li><strong>post</strong>: Last things the author posted; each entry is separated by &ldquo;|||&rdquo; (w.r.t. Mbti dataset, posts number on each entry ranges from 50 to 100)</li>
+<li><strong>text_type</strong>: identify if it&rsquo;s a comment, title or a post</li>
+<li><strong>type</strong>: as the MBTI dataset</li>
+<li><strong>num_post</strong>: number of post in the row</li>
+</ul>
+<p>This dataset contains 5754 records</p>
+<h3 id="how-data-has-been-collected">How data has been collected?</h3>
+<p>Data has been collected on <strong>Reddit</strong> using a scraper created by me (code available <a href="https://github.com/edu-rinaldi/MBTI-Predictor/tree/main/scraper">here</a>).</p>
+<p>First, I collected a list of users (and their personality) in 17 subreddits about MBTI (&ldquo;r/mbti&rdquo;, &ldquo;r/infp&rdquo;, &hellip;); the personality information is given by a badge that is assigned to the user (<strong>Reddit API</strong> call it &ldquo;author flair text&rdquo;).</p>
+<p>Then, I&rsquo;ve scraped the most recent posts of each user (max. 100 for each user) on the <strong>ENTIRE</strong> Reddit platform, this means that I scraped also posts not related to MBTI universe.</p>
+<p>At the end for each post I assigned the badge (so the personality) related to the author.</p>
+<h2 id="final-models">Final models</h2>
+<p>Final models that can be used are:</p>
+<ul>
+<li><code>final_pipeline_202107080921</code>, composed by
+<ul>
+<li><strong>NaiveBayes model</strong> for classifying between <strong>I/E</strong> type indicators, <strong>f1-score:</strong> 0.7414680295332422</li>
+<li><strong>Neural Network model</strong> for classifying between <strong>N/S</strong> type indicators, <strong>f1-score:</strong> 0.8314306227551886</li>
+<li><strong>NaiveBayes model</strong> for classifying between <strong>T/F</strong> type indicators, <strong>f1-score:</strong> 0.7338614509076911</li>
+<li><strong>Neural Network model</strong> for classifying between <strong>P/J</strong> type indicators, <strong>f1-score:</strong> 0.7301667584790412</li>
+</ul>
+</li>
+<li><code>final_pipeline_202107050925</code>, composed by
+<ul>
+<li><strong>Neural Network model</strong> for classifying between <strong>I/E</strong> type indicators, <strong>f1-score:</strong> 0.744559472384674</li>
+<li><strong>Neural Network model</strong> for classifying between <strong>N/S</strong> type indicators, <strong>f1-score:</strong> 0.835502168084075</li>
+<li><strong>Linear SVC model</strong> for classifying between <strong>T/F</strong> type indicators, <strong>f1-score:</strong> 0.726088608434644</li>
+<li><strong>Neural Network model</strong> for classifying between <strong>P/J</strong> type indicators, <strong>f1-score:</strong> 0.72016943168465</li>
+</ul>
+</li>
+</ul>
+<p>They are both located in <code>pretrainedModels</code> folder of this repository.</p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/eduardo-rinaldi/">home</a></li>
+         
+          <li><a href="/eduardo-rinaldi/posts/">posts</a></li>
+        
+      </ul>
+    </div>
+
+    
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#learning-task">Learning task</a></li>
+    <li><a href="#google-colab-or-databricks">Google Colab or Databricks?</a></li>
+    <li><a href="#datasets">Datasets</a></li>
+    <li><a href="#mbti-dataset">MBTI Dataset</a></li>
+    <li><a href="#reddit-dataset">Reddit dataset</a>
+      <ul>
+        <li><a href="#how-data-has-been-collected">How data has been collected?</a></li>
+      </ul>
+    </li>
+    <li><a href="#final-models">Final models</a></li>
+  </ul>
+</nav>
+    </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f" aria-label="Facebook">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&text=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="Twitter">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&title=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="Linkedin">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&is_video=false&description=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="Pinterest">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles&body=Check out this article: https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f" aria-label="Email">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&title=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="Pocket">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&title=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="reddit">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&name=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles&description=The%20MBTI%20%28Myers-Briggs%20Personality%20Type%20Indicator%29%20divides%20everyone%20into%2016%20distinct%20personality%20types%20across%204%20axis%3a%0a%20Introversion%20%28I%29%20%e2%80%93%20Extroversion%20%28E%29%20Intuition%20%28N%29%20%e2%80%93%20Sensing%20%28S%29%20Thinking%20%28T%29%20%e2%80%93%20Feeling%20%28F%29%20Judging%20%28J%29%20%e2%80%93%20Perceiving%20%28P%29%20%20This%20system%20is%20used%20in%3a%20businesses%2c%20online%2c%20for%20fun%2c%20for%20research%20and%20lots%20more.%0aUsually%2c%20for%20knowing%20which%20of%20the%2016%20personalities%20is%20closer%20to%20our%20one%20we%20have%20to%20answer%20to%20a%20questionnaire%3b%20why%20not%20automate%20this%20task%3f" aria-label="Tumblr">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fedu-rinaldi.github.io%2feduardo-rinaldi%2fposts%2fmbti%2f&t=How%20to%20predict%20MBTI%20analyzing%20twitter%20profiles" aria-label="Hacker News">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu-toggle" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;" aria-label="Menu">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="toc-toggle" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;" aria-label="TOC">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share-toggle" class="icon" href="#" onclick="$('#share-footer').toggle();return false;" aria-label="Share">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" aria-label="Top of Page">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2022  Eduardo Rinaldi 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/eduardo-rinaldi/">home</a></li>
+         
+        <li><a href="/eduardo-rinaldi/posts/">posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/eduardo-rinaldi/lib/font-awesome/css/all.min.css>
+<script src=/eduardo-rinaldi/lib/jquery/jquery.min.js></script>
+<script src=/eduardo-rinaldi/js/main.js></script>
+
+<script src=/eduardo-rinaldi/js/code-copy.js></script>
+
+
+
+
+</html>
