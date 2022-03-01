@@ -2,21 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Eduardo Rinaldi</title>
-    <link>https://edu-rinaldi.github.io/eduardo-rinaldi/</link>
+    <link>https://edu-rinaldi.github.io/</link>
     <description>Recent content on Eduardo Rinaldi</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>it-it</language>
-    <lastBuildDate>Tue, 01 Mar 2022 15:11:22 +0100</lastBuildDate><atom:link href="https://edu-rinaldi.github.io/eduardo-rinaldi/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>How to predict MBTI analyzing twitter profiles</title>
-      <link>https://edu-rinaldi.github.io/eduardo-rinaldi/posts/mbti/</link>
-      <pubDate>Tue, 01 Mar 2022 15:11:22 +0100</pubDate>
-      
-      <guid>https://edu-rinaldi.github.io/eduardo-rinaldi/posts/mbti/</guid>
-      <description>The MBTI (Myers-Briggs Personality Type Indicator) divides everyone into 16 distinct personality types across 4 axis:
- Introversion (I) – Extroversion (E) Intuition (N) – Sensing (S) Thinking (T) – Feeling (F) Judging (J) – Perceiving (P)  This system is used in: businesses, online, for fun, for research and lots more.
-Usually, for knowing which of the 16 personalities is closer to our one we have to answer to a questionnaire; why not automate this task?</description>
-    </item>
-    
+    <language>it-it</language><atom:link href="https://edu-rinaldi.github.io/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
