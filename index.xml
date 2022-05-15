@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Eduardo Rinaldi</title>
-    <link>https://edu-rinaldi.github.io/eduardo-rinaldi/</link>
+    <link>https://edu-rinaldi.github.io/</link>
     <description>Recent content on Eduardo Rinaldi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>it-it</language>
-    <lastBuildDate>Tue, 14 Dec 2021 15:24:51 +0200</lastBuildDate><atom:link href="https://edu-rinaldi.github.io/eduardo-rinaldi/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Dec 2021 15:24:51 +0200</lastBuildDate><atom:link href="https://edu-rinaldi.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MBTI From Twitter Profiles</title>
-      <link>https://edu-rinaldi.github.io/eduardo-rinaldi/posts/mbti-from-twitter-profiles/</link>
+      <link>https://edu-rinaldi.github.io/posts/mbti-from-twitter-profiles/</link>
       <pubDate>Tue, 14 Dec 2021 15:24:51 +0200</pubDate>
       
-      <guid>https://edu-rinaldi.github.io/eduardo-rinaldi/posts/mbti-from-twitter-profiles/</guid>
+      <guid>https://edu-rinaldi.github.io/posts/mbti-from-twitter-profiles/</guid>
       <description>MBTI (Myers-Briggs Type Indicator) identifies a set of psychological characteristics identified through special psychometric questionnaires and discriminates among sixteen possible personality types, identified by four different characteristics that can each present in two alternative ways:
  Introversion (I) / Extroversion (E) Sensitivity (S) / Intuition (N) Reasoning (R) / Feeling (F) Judgment (J) / Perception (P)  So I wondered if it was possible to identify the personality of a user based on what he writes publicly on forums and / or social networks (Reddit, Facebook, Twitter, &amp;hellip;) without having to go through a questionnaire (the latter really boring .</description>
     </item>
