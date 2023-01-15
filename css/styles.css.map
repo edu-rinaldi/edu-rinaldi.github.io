@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "styles.css",
-	"sourceRoot": "C:/Users/eduar/Desktop/dev/site/eduardo-rinaldi",
+	"sourceRoot": "C:/Dev/eduardo-rinaldi-repo",
 	"sources": [
 		"themes/cactus/assets/scss/style.scss",
 		"themes/cactus/assets/scss/_variables.scss",
